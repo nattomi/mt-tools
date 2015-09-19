@@ -132,9 +132,9 @@ int main(int argc, char **argv) {
       g = csqrt(I * omega * mu * l->sigma);
       iwm = I * omega * mu;
       coth_gd = 1 / ctanh(g * l->d);
-      Z *= g * coth_gd / iwm;
-      Z = (Z + 1) / (Z + coth_gd);
-      Z = iwm * Z / g;
+      Z *= g / iwm;
+      Z = (Z * coth_gd + 1) / (Z + coth_gd);
+      Z *= iwm / g;
       l = l->prev;
     }
     printf("%f %f %f %f\n", omega, creal(Z), cimag(Z), pow(cabs(Z), 2) / (omega * mu));
